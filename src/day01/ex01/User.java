@@ -1,21 +1,14 @@
-package day01.ex00;
+package day01.ex01;
 
 public class User {
-    private int identifier;
+    private Integer identifier;
     private String name;
     private Integer balance;
-    private static Integer counter = 0;
-
 
     public User(String name, Integer balance) {
+        this.identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
-        nextId();
         setBalance(balance);
-
-    }
-
-    private Integer nextId() {
-        return this.identifier = counter++;
     }
 
     private void setBalance(Integer balance) {
@@ -55,3 +48,5 @@ public class User {
                 '}';
     }
 }
+
+
