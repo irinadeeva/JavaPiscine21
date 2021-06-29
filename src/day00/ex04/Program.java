@@ -14,27 +14,42 @@ public class Program {
         }
 
         int delimeter = 1;
-        if (characterFrequency[0] > 10)
+        if (characterFrequency[0] > 10) {
             delimeter = characterFrequency[0] / 10;
         for (int i = 0; i < width; i++) {
-            int k = characterFrequency[i] / delimeter;
-            if (k > 10)
-                k = 10;
+            int k = 10;
+            if (i != 0)
+                k = characterFrequency[i] / delimeter - 1;
+            if (k >= 10 && i != 0)
+                k = 9;
             int j = 10;
             while (k > 0) {
                 histogram[j][i] = '#';
                 j--;
                 k--;
             }
-            histogram[j][i] = (char)(characterFrequency[i] - 1);
+            histogram[j][i] = (char)(characterFrequency[i] + 36);
         }
+        } else {
+            for (int i = 0; i < width; i++) {
+                int k = characterFrequency[i];
+                int j = 10;
+                while (k > 0) {
+                    histogram[j][i] = '#';
+                    j--;
+                    k--;
+                }
+                histogram[j][i] = (char)(characterFrequency[i] + 36);
+            }
+        }
+
+
 
         for (int i = 0; i < height; i++) {
             System.out.println();
             for (int j = 0; j < width; j++) {
                 if (i != 11 && histogram[i][j] != 0 && histogram[i][j] != '#') {
-                    System.out.print(histogram[i][j] + 1 + "   ");
-
+                    System.out.print(histogram[i][j] - 36 + "   ");
                 }
                 else if (histogram[i][j] != 0)
                     System.out.print(histogram[i][j] + "   ");

@@ -28,7 +28,6 @@ public class Program {
         return true;
     }
 
-
     public static void main(String[] args) {
         int coffeeCount = 0;
         Scanner sn = new Scanner(System.in);
@@ -41,5 +40,4 @@ public class Program {
         }
         System.out.println("Count of coffee-request - " + coffeeCount);
     }
-
 }
