@@ -41,6 +41,7 @@ public class Program {
                 }
                 histogram[j][i] = (char)(characterFrequency[i] + 36);
             }
+            System.out.println(" ");
         }
 
 
