@@ -1,4 +1,5 @@
-package day01.ex04;
+package day01.ex05;
+
 
 
 import java.util.UUID;
@@ -16,6 +17,10 @@ public class TransactionsService {
 
     public Integer getUserBalance(Integer id) throws UserNotFoundException {
         return usersList.getUserByID(id).getBalance();
+    }
+
+    public String getUserName(Integer id) throws UserNotFoundException {
+        return usersList.getUserByID(id).getName();
     }
 
     public void performTransfer(Integer senderId, Integer recipientId, Integer amount) {
@@ -38,13 +43,14 @@ public class TransactionsService {
         recipient.getTransactions().addTransaction(transactionIncome);
     }
 
-    public Transaction[] getUserTransaction(Integer userId) throws UserNotFoundException{
+    public Transaction[] getUserTransaction(Integer userId) throws UserNotFoundException {
         return usersList.getUserByID(userId).getTransactions().toArray();
     }
 
-    public boolean removeTransactionByIdForUser (Integer userId, UUID transactionId) throws TransactionNotFoundException, UserNotFoundException{
+    public boolean removeTransactionByIdForUser (Integer userId, UUID transactionId) throws TransactionNotFoundException, UserNotFoundException {
         return usersList.getUserByID(userId).getTransactions().removeTransactionByID(transactionId);
     }
+
 
     public Transaction[] findUnpairedTransactions (){
         TransactionsLinkedList unpaired = new TransactionsLinkedList();
@@ -68,5 +74,4 @@ public class TransactionsService {
         }
         return unpaired.toArray();
     }
-
 }

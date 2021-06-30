@@ -46,7 +46,7 @@ public class Program {
         System.out.println("\n#--------------------------------------------#");
         System.out.println("List of unpaired transactions");
         System.out.println("#--------------------------------------------#\n");
-        Transaction[] unpairedTransactions = service.findUnpairedTransactions(user1.getIdentifier(), user2.getIdentifier(), user3.getIdentifier(), user4.getIdentifier());
+        Transaction[] unpairedTransactions = service.findUnpairedTransactions();
         if (unpairedTransactions.length == 0)
             System.out.println("No unpaired transaction");
         for (Transaction t : unpairedTransactions) {
@@ -63,11 +63,14 @@ public class Program {
             uuid = userTransactions2[0].getIdentifier();
         service.removeTransactionByIdForUser(user4.getIdentifier(), uuid);
 
-        Transaction[] unpairedTransactions2 = service.findUnpairedTransactions(user1.getIdentifier(), user2.getIdentifier(), user3.getIdentifier(), user4.getIdentifier());
+        Transaction[] unpairedTransactions2 = service.findUnpairedTransactions();
         for (Transaction t : unpairedTransactions2) {
             System.out.println(t);
         }
 
-        service.performTransfer(user3.getIdentifier(), user4.getIdentifier(), 5000000);
+        /*System.out.println("\n#--------------------------------------------#");
+        System.out.println("Exception demo");
+        System.out.println("#--------------------------------------------#\n");
+        service.performTransfer(user3.getIdentifier(), user4.getIdentifier(), 5000000);*/
     }
 }
