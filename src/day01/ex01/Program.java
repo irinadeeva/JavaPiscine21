@@ -7,9 +7,9 @@ public class Program {
         User user3 = new User("Adam", 150_000);
         User user4 = new User("Elen", -150_000);
 
-        System.out.println(user1);
-        System.out.println(user2);
-        System.out.println(user3);
-        System.out.println(user4);
+        System.out.println("User 1 has an id = " + user1.getIdentifier());
+        System.out.println("User 2 has an id = " + user2.getIdentifier());
+        System.out.println("User 3 has an id = " + user3.getIdentifier());
+        System.out.println("User 4 has an id = " + user4.getIdentifier());
     }
 }

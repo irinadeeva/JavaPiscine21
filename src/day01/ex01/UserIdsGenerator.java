@@ -5,16 +5,17 @@ public class UserIdsGenerator {
     static UserIdsGenerator instance = null;
     private static Integer counter = 0;
 
-    private UserIdsGenerator(){}
+    private UserIdsGenerator() {
+    }
 
-    public static UserIdsGenerator getInstance(){
+    public static UserIdsGenerator getInstance() {
         if (instance == null) {
             instance = new UserIdsGenerator();
         }
         return instance;
     }
 
-    public Integer generateId(){
+    public Integer generateId() {
         return ++counter;
     }
 }

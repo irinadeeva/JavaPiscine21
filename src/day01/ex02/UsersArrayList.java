@@ -1,8 +1,6 @@
 package day01.ex02;
 
-import java.util.Arrays;
-
-public class UsersArrayList implements UsersList{
+public class UsersArrayList implements UsersList {
     private static final int DEFAULT_CAPACITY = 10;
     private User[] userArrayList;
     private Integer size;
@@ -18,7 +16,7 @@ public class UsersArrayList implements UsersList{
 
     @Override
     public boolean addUser(User user) {
-        if (minCapacity.equals(size + 1)){
+        if (minCapacity.equals(size + 1)) {
             grow();
         }
         userArrayList[size++] = user;
@@ -27,9 +25,12 @@ public class UsersArrayList implements UsersList{
 
     @Override
     public User getUserByID(Integer id) throws UserNotFoundException {
-        for (User user : userArrayList) {
+        int i = 0;
+        while (i < size) {
+            User user = userArrayList[i];
             if (id.equals(user.getIdentifier()))
                 return user;
+            i++;
         }
         throw new UserNotFoundException();
     }
@@ -37,7 +38,7 @@ public class UsersArrayList implements UsersList{
     @Override
     public User UserByIndex(Integer index) {
         if (index >= size)
-            throw new IndexOutOfBoundsException("Index: "+ index +", Size: " + size);
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         return userArrayList[index];
     }
 
@@ -46,7 +47,7 @@ public class UsersArrayList implements UsersList{
         return size;
     }
 
-    private void grow(){
+    private void grow() {
         minCapacity = minCapacity + minCapacity / 2;
         User[] temp = new User[minCapacity];
         for (int i = 0; i < size; i++) {

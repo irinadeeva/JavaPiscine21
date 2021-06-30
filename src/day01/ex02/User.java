@@ -10,23 +10,11 @@ public class User {
     public User(String name, Integer balance) {
         this.identifier = UserIdsGenerator.getInstance().generateId();
         this.name = name;
-        setBalance(balance);
-    }
-
-    private void setBalance(Integer balance) {
         if (balance < 0) {
             this.balance = 0;
         } else {
             this.balance = balance;
         }
-    }
-
-    public void outgoingTransfer(Integer amount) {
-        this.balance -= amount;
-    }
-
-    public void incomingTransfer(Integer amount) {
-        this.balance += amount;
     }
 
     public Integer getBalance() {
@@ -35,10 +23,6 @@ public class User {
 
     public Integer getIdentifier() {
         return identifier;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

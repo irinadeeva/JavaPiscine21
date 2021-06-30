@@ -1,26 +1,26 @@
 package day01.ex03;
 
 import day01.ex00.Transaction;
-import day01.ex00.TransferCategory;
 import day01.ex00.User;
 
 import java.util.UUID;
 
 public class Program {
-    public static void main(String[] args) throws TransactionNotFoundException{
+    public static void main(String[] args) throws TransactionNotFoundException {
+
         TransactionsLinkedList transactionsLinkedList = new TransactionsLinkedList();
 
-        day01.ex00.User user1 = new day01.ex00.User("Alex", 95_000);
-        day01.ex00.User user2 = new day01.ex00.User("Luka", 10_000);
-        day01.ex00.User user3 = new day01.ex00.User("Adam", 150_000);
-        day01.ex00.User user4 = new User("Elen", -150_000);
+        User user1 = new User("Alex", 95_000);
+        User user2 = new User("Luka", 10_000);
+        User user3 = new User("Adam", 150_000);
+        User user4 = new User("Elen", -150_000);
 
-        Transaction transaction1 = new Transaction(user1, user2, TransferCategory.OUTCOME, -10_000);
-        Transaction transaction2 = new Transaction(user2, user1, TransferCategory.INCOME, 10_000);
-        Transaction transaction3 = new Transaction(user4, user3, TransferCategory.OUTCOME, -5_000);
-        Transaction transaction4 = new Transaction(user3, user4, TransferCategory.INCOME, 5_000);
-        Transaction transaction5 = new Transaction(user3, user4, TransferCategory.OUTCOME, -5_000);
-        Transaction transaction6 = new Transaction(user4, user3, TransferCategory.INCOME, 5_000);
+        Transaction transaction1 = new Transaction(user1, user2, 10_000, UUID.randomUUID());
+        Transaction transaction2 = new Transaction(user2, user1, 10_000, UUID.randomUUID());
+        Transaction transaction3 = new Transaction(user4, user3, 5_000, UUID.randomUUID());
+        Transaction transaction4 = new Transaction(user3, user4, 5_000, UUID.randomUUID());
+        Transaction transaction5 = new Transaction(user3, user4, 5_000, UUID.randomUUID());
+        Transaction transaction6 = new Transaction(user4, user3, 5_000, UUID.randomUUID());
 
         transactionsLinkedList.addTransaction(transaction1);
         transactionsLinkedList.addTransaction(transaction2);
@@ -29,12 +29,15 @@ public class Program {
         transactionsLinkedList.addTransaction(transaction5);
         transactionsLinkedList.addTransaction(transaction6);
 
-
+        System.out.println();
+        System.out.println("#--------------------------------------------#");
+        System.out.println("Transactions to Array");
+        System.out.println("#--------------------------------------------#");
+        System.out.println();
         Transaction[] transactions = transactionsLinkedList.toArray();
-        for (Transaction t: transactions) {
+        for (Transaction t : transactions) {
             System.out.println(t);
         }
-        System.out.println("#--------------------------------------------#");
 
 
         UUID uuid1 = transaction1.getIdentifier();
@@ -45,10 +48,21 @@ public class Program {
         transactionsLinkedList.removeTransactionByID(uuid3);
         transactionsLinkedList.removeTransactionByID(uuid6);
 
+        System.out.println();
+        System.out.println("#--------------------------------------------#");
+        System.out.println("Transactions to Array after Removing ");
+        System.out.println("#--------------------------------------------#");
+        System.out.println();
         transactions = transactionsLinkedList.toArray();
-        for (Transaction t: transactions) {
+        for (Transaction t : transactions) {
             System.out.println(t);
         }
+
+
+        System.out.println("#--------------------------------------------#");
+        System.out.println("Exception for non-existent transaction ");
+        System.out.println("#--------------------------------------------#");
+        transactionsLinkedList.removeTransactionByID(UUID.randomUUID());
 
     }
 }

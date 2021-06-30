@@ -29,11 +29,10 @@ public class Program {
         usersArrayList.addUser(user11);
         usersArrayList.addUser(user12);
 
-        System.out.println(usersArrayList.getNumberOfUsers());
-        System.out.println(usersArrayList.UserByIndex(11));
-        System.out.println(usersArrayList.getUserByID(5));
+        System.out.println("Number of  all users = " + usersArrayList.getNumberOfUsers());
+        System.out.println("User by Index = 11 is an " + usersArrayList.UserByIndex(11));
+        System.out.println("User by ID = 5 is an " + usersArrayList.getUserByID(5));
 
-        System.out.println(usersArrayList);
-
+        System.out.println("User by ID = 25 is an " + usersArrayList.getUserByID(25));
     }
 }

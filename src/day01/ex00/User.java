@@ -1,37 +1,24 @@
 package day01.ex00;
 
+import java.util.UUID;
+
 public class User {
-    private int identifier;
+    private Integer identifier;
     private String name;
     private Integer balance;
-    private static Integer counter = 0;
 
 
     public User(String name, Integer balance) {
         this.name = name;
-        nextId();
-        setBalance(balance);
-
-    }
-
-    private Integer nextId() {
-        return this.identifier = counter++;
-    }
-
-    private void setBalance(Integer balance) {
+        Integer id = UUID.randomUUID().hashCode();
+        if (id < 0)
+            id = -id;
+        this.identifier = id;
         if (balance < 0) {
             this.balance = 0;
         } else {
             this.balance = balance;
         }
-    }
-
-    public void outgoingTransfer(Integer amount) {
-        this.balance -= amount;
-    }
-
-    public void incomingTransfer(Integer amount) {
-        this.balance += amount;
     }
 
     public Integer getBalance() {
@@ -40,10 +27,6 @@ public class User {
 
     public Integer getIdentifier() {
         return identifier;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

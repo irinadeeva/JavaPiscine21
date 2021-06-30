@@ -1,18 +1,14 @@
 package day01.ex03;
 
 import day01.ex00.Transaction;
-import day01.ex02.User;
-import day01.ex02.UserNotFoundException;
 
-import java.util.LinkedList;
 import java.util.UUID;
 
-public class TransactionsLinkedList implements TransactionsList{
+public class TransactionsLinkedList implements TransactionsList {
 
     private Integer size;
     private Node first;
     private Node last;
-
 
     public TransactionsLinkedList() {
         this.size = 0;
@@ -35,8 +31,7 @@ public class TransactionsLinkedList implements TransactionsList{
         last = newNode;
         if (l == null) {
             first = newNode;
-        }
-        else {
+        } else {
             l.next = newNode;
             newNode.prev = l;
         }
@@ -45,9 +40,9 @@ public class TransactionsLinkedList implements TransactionsList{
     }
 
     @Override
-    public boolean removeTransactionByID(UUID id) throws TransactionNotFoundException{
+    public boolean removeTransactionByID(UUID id) throws TransactionNotFoundException {
         for (Node x = first; x != null; x = x.next) {
-            if (id.equals(x.transaction.getIdentifier())){
+            if (id.equals(x.transaction.getIdentifier())) {
                 final Node next = x.next;
                 final Node prev = x.prev;
 
@@ -70,7 +65,7 @@ public class TransactionsLinkedList implements TransactionsList{
                 return true;
             }
         }
-        throw new UserNotFoundException();
+        throw new TransactionNotFoundException();
     }
 
     @Override
