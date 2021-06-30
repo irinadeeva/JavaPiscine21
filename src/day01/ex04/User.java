@@ -1,4 +1,4 @@
-package day01.ex03;
+package day01.ex04;
 
 public class User {
     private Integer identifier;
@@ -14,6 +14,7 @@ public class User {
         } else {
             this.balance = balance;
         }
+        transactions = new TransactionsLinkedList();
     }
 
     public Integer getBalance() {
@@ -22,6 +23,18 @@ public class User {
 
     public Integer getIdentifier() {
         return identifier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance += balance;
+    }
+
+    public TransactionsList getTransactions() {
+        return transactions;
     }
 
     @Override

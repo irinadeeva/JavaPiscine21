@@ -1,4 +1,5 @@
-package day01.ex00;
+package day01.ex04;
+
 
 import java.util.UUID;
 
@@ -27,6 +28,14 @@ public class Transaction {
 
     public UUID getIdentifier() {
         return identifier;
+    }
+
+    public User getRecipient() {
+        return recipient;
+    }
+
+    public User getSender() {
+        return sender;
     }
 
     @Override

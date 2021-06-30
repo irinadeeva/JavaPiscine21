@@ -1,4 +1,4 @@
-package day01.ex00;
+package day01.ex03;
 
 import java.util.UUID;
 

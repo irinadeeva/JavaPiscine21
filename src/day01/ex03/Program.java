@@ -1,8 +1,5 @@
 package day01.ex03;
 
-import day01.ex00.Transaction;
-import day01.ex00.User;
-
 import java.util.UUID;
 
 public class Program {
@@ -29,11 +26,9 @@ public class Program {
         transactionsLinkedList.addTransaction(transaction5);
         transactionsLinkedList.addTransaction(transaction6);
 
-        System.out.println();
-        System.out.println("#--------------------------------------------#");
+        System.out.println("\n#--------------------------------------------#");
         System.out.println("Transactions to Array");
-        System.out.println("#--------------------------------------------#");
-        System.out.println();
+        System.out.println("#--------------------------------------------#\n");
         Transaction[] transactions = transactionsLinkedList.toArray();
         for (Transaction t : transactions) {
             System.out.println(t);
@@ -48,20 +43,18 @@ public class Program {
         transactionsLinkedList.removeTransactionByID(uuid3);
         transactionsLinkedList.removeTransactionByID(uuid6);
 
-        System.out.println();
-        System.out.println("#--------------------------------------------#");
+        System.out.println("\n#--------------------------------------------#");
         System.out.println("Transactions to Array after Removing ");
-        System.out.println("#--------------------------------------------#");
-        System.out.println();
+        System.out.println("#--------------------------------------------#\n");
         transactions = transactionsLinkedList.toArray();
         for (Transaction t : transactions) {
             System.out.println(t);
         }
 
 
-        System.out.println("#--------------------------------------------#");
+        System.out.println("\n#--------------------------------------------#");
         System.out.println("Exception for non-existent transaction ");
-        System.out.println("#--------------------------------------------#");
+        System.out.println("#--------------------------------------------#\n");
         transactionsLinkedList.removeTransactionByID(UUID.randomUUID());
 
     }
