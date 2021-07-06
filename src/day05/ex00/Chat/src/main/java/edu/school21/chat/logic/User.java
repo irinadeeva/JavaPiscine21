@@ -1,5 +1,9 @@
-package day05.ex00.Chat.src.main.java.edu.school21.chat.logic;
+package edu.school21.chat.logic;
 
 public class User {
-
+    long userID;
+    String login;
+    String password;
+    List <Chatroom> createdRooms;
+    List <Chatroom> where a user socializes
 }
