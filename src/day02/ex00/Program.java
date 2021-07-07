@@ -1,3 +1,4 @@
+package day02.ex00;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Program {
+
     public static void main(String[] args) {
         Map<String, String> signaturesMap = new HashMap<>();
         StringBuilder result = new StringBuilder();

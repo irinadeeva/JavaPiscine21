@@ -144,7 +144,7 @@ public class Program {
     private static String check(String line, Scanner scanner) {
         while (true) {
             if (line.equals("exit"))
-                return line;
+                System.exit(0);
             if (line.equals("ls"))
                 return line;
             if (line.startsWith("mv ") && line.split(" ").length == 3)
