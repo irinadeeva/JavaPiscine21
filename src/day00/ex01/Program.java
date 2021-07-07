@@ -1,4 +1,4 @@
-package day00.ex01;
+//package day00.ex01;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class Program {
                 System.exit(-1);
             }
             else {
-                for (i = 2; i < num / i; i++) {
+                for (i = 2; i <= num / i; i++) {
                     if (num % i == 0) {
                         result = false;
                         break;
