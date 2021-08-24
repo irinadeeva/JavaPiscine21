@@ -7,7 +7,6 @@ public class Program {
         int mask = number >> 63;
         number = (number + mask) ^ mask;
 
-
         result += number % 10;
         number = number / 10;
         result += number % 10;
