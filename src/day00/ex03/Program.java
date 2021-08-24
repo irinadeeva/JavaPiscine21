@@ -22,7 +22,6 @@ public class Program {
         return minWeekResult;
     }
 
-
     static void printResult(long minResults) {
         long reverseMinResults = 0;
         int weekNumber = 0;
