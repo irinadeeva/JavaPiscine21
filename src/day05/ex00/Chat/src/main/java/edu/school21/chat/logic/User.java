@@ -3,9 +3,9 @@ package edu.school21.chat.logic;
 import java.util.List;
 
 public class User {
-    long userID;
-    String login;
-    String password;
-    List <Chatroom> createdRooms;
-    List<Chatroom> whereausersocializes;
+    private long id;
+    private String login;
+    private String password;
+    private List <Chatroom> createdRooms;
+    private List <Chatroom> activeRooms;
 }
