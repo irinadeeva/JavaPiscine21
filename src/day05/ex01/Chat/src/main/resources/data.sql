@@ -20,13 +20,13 @@ values ('chatroom №1', (SELECT userId FROM users WHERE login = 'john')),
 
 INSERT INTO messages(text, authorid, roomid)
 values ('hello, I have done it', (SELECT userid FROM users WHERE login = 'john'),
-        (SELECT roomid FROM rooms WHERE name = 'chatroom №1')),
+        (SELECT roomId FROM rooms WHERE name = 'chatroom №1')),
        ('Kate, I am here', (SELECT userid FROM users WHERE login = 'pall'),
-        (SELECT roomid FROM rooms WHERE name = 'chatroom №10')),
+        (SELECT roomId FROM rooms WHERE name = 'chatroom №10')),
        ('I am alone as always', (SELECT userid FROM users WHERE login = 'mary'),
-        (SELECT roomid FROM rooms WHERE name = 'chatroom №2')),
+        (SELECT roomId FROM rooms WHERE name = 'chatroom №2')),
        ('I am stay up until the show', (SELECT userid FROM users WHERE login = 'pall'),
-        (SELECT roomid FROM rooms WHERE name = 'chatroom №9')),
+        (SELECT roomId FROM rooms WHERE name = 'chatroom №9')),
        ('Who are you? What are doing  here? Go away ...', (SELECT userid FROM users WHERE login = 'ruth'),
-        (SELECT roomid FROM rooms WHERE name = 'chatroom №2'));
+        (SELECT roomId FROM rooms WHERE name = 'chatroom №2'));
 
