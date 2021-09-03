@@ -8,21 +8,15 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
 public class PrinterWithDateTimeImpl implements Printer {
+    Renderer renderer;
 
-    @Qualifier("rendererStandardImpl")
-    @Autowired
-    private Renderer renderer;
-    private LocalDateTime localDateTime = LocalDateTime.now();
-
-    @Bean(name = "printerDateTime")
-    PrinterWithDateTimeImpl getPrinterWithPrefix() {
-        return new PrinterWithDateTimeImpl();
+    public PrinterWithDateTimeImpl(Renderer renderer) {
+        this.renderer = renderer;
     }
 
     @Override
-    public void print(String s) {
-        renderer.print(localDateTime + " " + s);
+    public void print(String message) {
+        renderer.print(LocalDateTime.now() + " " + message);
     }
 }

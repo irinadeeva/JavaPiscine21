@@ -6,4 +6,23 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="edu.school21"/>
+    <bean id="printToLower" class="edu.school21.preprocessor.PreProcessorToLowerImpl"></bean>
+    <bean id="printToUpper" class="edu.school21.preprocessor.PreProcessorToUpperImpl"></bean>
+
+    <bean id="renderErr" class="edu.school21.Render.RendererErrImpl">
+        <constructor-arg index="0" ref="printToUpper"/>
+    </bean>
+
+    <bean id="renderStandart" class="edu.school21.Render.RendererStandardImpl">
+        <constructor-arg index="0" ref="printToLower"/>
+    </bean>
+
+    <bean id="printWithDate" class="edu.school21.Printer.PrinterWithDateTimeImpl">
+        <constructor-arg index="0" ref="renderStandart"/>
+    </bean>
+
+    <bean id="printWithPrefix" class="edu.school21.Printer.PrinterWithPrefixImpl">
+        <constructor-arg index="0" ref="renderErr"/>
+        <property name="prefix" value="Prefix"/>
+    </bean>
 </beans>

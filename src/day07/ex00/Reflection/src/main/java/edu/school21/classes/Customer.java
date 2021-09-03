@@ -5,9 +5,9 @@ import java.util.StringJoiner;
 public class Customer {
     private String firstName;
     private String lastName;
-    private int purchaseNumber;
+    private Integer purchaseNumber;
 
-    public Customer(Object name, Object surname, Object pN) {
+    public Customer() {
         this.firstName = "Default first name";
         this.lastName = "Default last name";
         this.purchaseNumber = 0;
@@ -19,14 +19,12 @@ public class Customer {
         this.purchaseNumber = purchaseNumber;
     }
 
-    public int increaseTotalPurchase(int value) {
+    public void increaseTotalPurchase(Integer value) {
         this.purchaseNumber += value;
-        return purchaseNumber;
     }
 
-    public int returnPurchase(int value){
+    public void returnPurchase(Integer value){
         this.purchaseNumber -= value;
-        return purchaseNumber;
     }
 
     @Override

@@ -2,9 +2,9 @@ package edu.school21.classes;
 
 public class Car {
     private String brand;
-    private int price;
+    private Integer price;
     private String color;
-    private int speed;
+    private Integer speed;
 
     public Car() {
         this.brand = "Default brand";
@@ -20,14 +20,12 @@ public class Car {
         this.speed = speed;
     }
 
-    public int increaseSpeed(int increment) {
+    public void increaseSpeed(Integer increment) {
         this.speed  =+ increment;
-        return this.speed;
     }
 
-    public int decreaseSpeed(int increment) {
+    public void decreaseSpeed(Integer increment) {
         this.speed =- increment;
-        return this.speed;
     }
 
     public String repaintCar(String color){
@@ -35,21 +33,19 @@ public class Car {
         return color;
     }
 
-    public int decreasePrice(int increment){
+    public void decreasePrice(Integer increment){
         this.price =- increment;
-        return this.price;
     }
 
-    public int increasePrice(int increment){
+    public void increasePrice(Integer increment){
         this.price =+ increment;
-        return this.price;
     }
 
     @Override
     public String toString() {
         return "Car {" +
                 "brand = '" + brand + '\'' +
-                ", priceModel = " + price +
+                ", price = " + price +
                 ", color = '" + color + '\'' +
                 ", speed = " + speed +
                 '}';

@@ -5,16 +5,17 @@ import org.reflections.scanners.SubTypesScanner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
     static Method[] declaredMethods;
     static Field[] declaredFields;
-
+    static Scanner sc = new Scanner(System.in);
+    static String str = null;
+    static Object tmp = null;
 
     public static void main(String[] args) {
 
@@ -37,15 +38,13 @@ public class Main {
 
 
     private static void chooseMethod(Set<Class> classes) {
-        String line;
         boolean flag = false;
 
         while (true) {
             System.out.println("Enter class name:");
-            Scanner scanner = new Scanner(System.in);
-            line = scanner.nextLine();
+            str = sc.nextLine();
             for (Class c : classes) {
-                if (c.getSimpleName().equals(line)) {
+                if (c.getSimpleName().equals(str)) {
                     System.out.println("---------------------");
                     printField(c);
                     flag = true;
@@ -59,8 +58,8 @@ public class Main {
     }
 
     private static void printField(Class c) {
-
         declaredFields = c.getDeclaredFields();
+
         if (declaredFields.length != 0)
             System.out.println("fields:");
         for (Field field : declaredFields) {
@@ -70,7 +69,6 @@ public class Main {
     }
 
     private static void printMethods(Class c) {
-
         declaredMethods = c.getDeclaredMethods();
 
         Method[] objectMethods = new Object().getClass().getMethods();
@@ -95,43 +93,109 @@ public class Main {
         System.out.println("---------------------");
         try {
             createObject(c);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static void createObject(Class c) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    private static void createObject(Class c) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         System.out.println("Let’s create an object.");
+        Object obj = c.newInstance();
 
-        Object name = "Ira";
-        Object surname = "SaM";
-        Object pN = 1;
+        for (Field field : declaredFields) {
+            System.out.println(field.getName() + ":");
+            correctSnan(field);
+            field.setAccessible(true);
+            field.set(obj, tmp);
+        }
+        System.out.println(obj);
+        changeField(obj, c);
+    }
 
+    private static void changeField(Object obj, Class c) throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, InstantiationException {
+        System.out.println("---------------------");
+        System.out.println("Enter name of the field for changing:");
 
-/*
-        Customer customer = new Customer(name, surname, pN);
-        System.out.println(customer);
-        c.newInstance(name, surname , pN);
-*/
-
-
-        //Class randomClass = Class.forName(c.getName());
-        Constructor<?>[] constructors = c.getConstructors();
-        for (Constructor constructor : constructors) {
-            if (constructor.getParameterCount() != 0) {
-                constructor.getParameterTypes();
+        str = sc.nextLine();
+        str = sc.nextLine();
+        for (Field field : declaredFields) {
+            if (str.equals(field.getName())) {
+                System.out.println("Enter " + field.getType().getSimpleName() + " value:");
+                correctSnan(field);
+                field.setAccessible(true);
+                field.set(obj, tmp);
+                break;
             }
         }
+        System.out.println(obj);
+        callMethod(obj, c);
+    }
 
-  /*      Object o = randomClass.newInstance();
-        System.out.println(o);
-*/
-        //Constructor<?>[] constructors = randomClass.getConstructors();
+    private static void callMethod(Object obj, Class c) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        System.out.println("---------------------");
+        System.out.println("Enter name of the method for call:");
 
+        str = sc.nextLine();
+        str = sc.nextLine();
+        for (Method method : declaredMethods) {
 
+            String tmp = method.getName();
+            String classes = "";
+            Class<?>[] types = method.getParameterTypes();
+            for (Class t : types) {
+                classes += t.getSimpleName();
+            }
+            String all = tmp + "(" + classes + ")";
+            if (str.equals(all)) {
+                method.setAccessible(true);
+                Class<?>[] params = method.getParameterTypes();
+                for (Class<?> param : params) {
+                    System.out.println("Enter " + param.getSimpleName() + " value");
+                    str = sc.next();
+                    if (!method.getReturnType().getSimpleName().equals("void")) {
+                        System.out.print("Method returned: ");
+                        if (param.equals(int.class)) {
+                            Object value = method.invoke(obj, Integer.parseInt(str));
+                            System.out.println((int) value);
+                        } else if (param.equals(String.class)) {
+                            Object value = method.invoke(obj, str);
+                            System.out.println((String) value);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    private static void correctSnan(Field field) throws ClassNotFoundException {
+        tmp = Class.forName(field.getType().getName());
+        if (tmp == Boolean.class) {
+            while (sc.hasNextBoolean() == false) {
+                sc.next();
+            }
+            tmp = sc.nextBoolean();
+        } else if (tmp == String.class) {
+            while (sc.hasNext() == false) {
+                sc.next();
+            }
+            tmp = sc.next();
+            ;
+        } else if (tmp == Integer.class) {
+            while (sc.hasNextInt() == false) {
+                sc.next();
+            }
+            tmp = sc.nextInt();
+        } else if (tmp == Double.class) {
+            while (sc.hasNextDouble() == false) {
+                sc.next();
+            }
+            tmp = sc.nextDouble();
+        } else if (tmp == Long.class) {
+            while (sc.hasNextLong() == false) {
+                sc.next();
+            }
+            tmp = sc.nextLong();
+        }
     }
 }

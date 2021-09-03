@@ -1,17 +1,17 @@
 package edu.school21.Render;
 
-import edu.school21.PreProcessor.PreProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import edu.school21.preprocessor.PreProcessor;
 
-@Component
-public class RendererStandardImpl implements Renderer{
-    @Qualifier("preProcessorToLowerImpl")
-    @Autowired
-    private PreProcessor preProcessor;
+public class RendererStandardImpl implements Renderer {
 
-   public void print(String s){
-       System.out.println(preProcessor.changeString(s));
-   }
+    PreProcessor preProcessor;
+
+    public RendererStandardImpl(PreProcessor preProcessor) {
+        this.preProcessor = preProcessor;
+    }
+
+    @Override
+    public void print(String message) {
+        System.out.println(preProcessor.preProcessor(message));
+    }
 }
